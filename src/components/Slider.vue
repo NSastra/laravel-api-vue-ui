@@ -63,7 +63,7 @@ export default {};
 </script>
 
 <style>
-img{
-    height: 500px;
+img {
+  height: 500px;
 }
 </style>

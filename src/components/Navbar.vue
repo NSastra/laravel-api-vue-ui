@@ -16,14 +16,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item"> 
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/createfriends">Create friends</router-link>
+            <router-link class="nav-link" to="/createfriends">Add Friends</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/editfriends">Edit friends</router-link>
+            <router-link class="nav-link" to="/editfriends">Edit Friends</router-link>
           </li>
         </ul>
       </div>
