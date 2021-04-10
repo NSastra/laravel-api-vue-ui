@@ -47,15 +47,17 @@ export default {
 
     onMounted(() => {
       axios.get('localhost:8000/api/friends/')
-      .then(respons => {
-        friends.value = respons.data.data
+      .then(response => {
+        friends.value = response.data.data
       })
       .catch(error => {
         console.log(error)
-      })
-    })
-    return friends
-  }
+      });
+    });
+    return  {
+      friends,
+  };
+  },
     
 }
 </script>
