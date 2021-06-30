@@ -3,6 +3,7 @@ import Home from '../views/friends/Home.vue'
 import Createfriends from '../views/friends/Createfriends.vue'
 import Editfriends from '../views/friends/Editfriends.vue'
 import Groups from '../views/groups/Index.vue'
+import Detailfriends from '../views/friends/Detailfriends.vue'
 const routes = [
   {
     path: '/',
@@ -29,6 +30,11 @@ const routes = [
     path: '/groups',
     name: 'groups.Index',
     component: Groups
+  },
+  {
+    path: '/Detailfriends/:id',
+    name: 'Detailfriends.Index',
+    component: Detailfriends
   },
 ]
 

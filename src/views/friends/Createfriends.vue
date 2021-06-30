@@ -64,7 +64,7 @@ export default {
       let nama = friend.nama
       let no_tlp = friend.no_tlp
       let alamat = friend.alamat
-      let kode_group = friend.nama
+      let kode_group = friend.kode_group
 
       axios.post('http://pia.labirin.co.id/api/friends/', {
         nama: nama,

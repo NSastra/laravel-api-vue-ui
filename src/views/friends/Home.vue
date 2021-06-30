@@ -3,6 +3,7 @@
     <Slider />
     <hr class="my-3">
     <router-link class="btn btn-primary" to="/createfriends">Add Friends</router-link>
+    <Cardfriends :friends="friends" />
     <table class="table">
   <thead>
     <tr>
@@ -33,12 +34,14 @@ import axios from 'axios'
 
 // @ is an alias to /src
 import Slider from '@/components/Slider.vue'
+import Cardfriends from '@/components/Cardfriends.vue'
 import { onMounted, ref } from 'vue'
   
 export default {
   name: 'Home',
   components: {
-    Slider
+    Slider,
+    Cardfriends,
         
   },
 
@@ -68,8 +71,8 @@ export default {
     return  {
       friends,
       friendDelete
-  };
-  },
+    }
+  }
     
-}
+};
 </script>
