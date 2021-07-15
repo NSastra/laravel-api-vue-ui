@@ -26,6 +26,14 @@
   <div class="alert alert-danger" v-if="validation.alamat">
     {{ validation.alamat=[0] }}
   </div>
+
+  <div>
+    <label for="exampleInputPassword1">Group</label>
+  <select class="form-select" aria-label="Default select example" v-model="groups.id">
+    <option selected> This </option>
+    <option v-for="group in groups" :key="group.id" value="group.id"> {{ group.name }} </option>
+  </select>
+  </div>
   
   <div class="form-group">
     <label for="exampleInputPassword1">Kode Group</label>
@@ -43,7 +51,7 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import {useRouter } from 'vue-router'
 import axios from 'axios'
 export default {
@@ -56,9 +64,22 @@ export default {
       kode_group: ''
     })
 
-    const validation = ref ([])
+    let kode_group = ref([])
+
+    const validation = ref([])
 
     const router = useRouter()
+
+    onMounted(() => {
+        axios.get('localhost:8000/api/groups/', {
+        
+      }).then((response) => {
+        groups.value = response.data.data
+        console.log(response)
+        })
+      }).catch(error => {
+        console.log(error)
+      })
 
     function store(){
       let nama = friend.nama
@@ -66,7 +87,7 @@ export default {
       let alamat = friend.alamat
       let kode_group = friend.kode_group
 
-      axios.post('http://pia.labirin.co.id/api/friends/', {
+      axios.post('localhost:8000/api/groups/', {
         nama: nama,
         no_tlp: no_tlp,
         alamat: alamat,
@@ -84,7 +105,8 @@ export default {
       friend,
       validation,
       router,
-      store
+      store,
+      groups
     }
 
   },

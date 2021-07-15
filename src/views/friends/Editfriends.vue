@@ -26,6 +26,14 @@
   <div class="alert alert-danger" v-if="validation.alamat">
     {{ validation.alamat=[0] }}
   </div>
+
+  <div>
+    <label for="exampleInputPassword1">Group</label>
+  <select class="form-select" aria-label="Default select example" v-model="groups.id">
+    <option selected> This </option>
+    <option v-for="group in groups" :key="group.id" value="group.id"> {{ group.name }} </option>
+  </select>
+  </div>
   
   <div class="form-group">
     <label for="exampleInputPassword1">Kode Group</label>
@@ -57,6 +65,8 @@ export default {
       kode_group: ''
     })
 
+    let groups = ref([])
+
     const validation = ref ([])
 
     const router = useRouter()
@@ -64,7 +74,7 @@ export default {
     const route = useRoute()
 
     onMounted(() =>{
-      axios.get(`http://pia.labirin.co.id/api/friends/${route.params.id}`)
+      axios.get(`localhost:8000/api/friends/${route.params.id}/edit`)
       .then(response => {
         friend.nama = response.data.data.nama
         friend.no_tlp = response.data.data.no_tlp
@@ -73,7 +83,15 @@ export default {
       }).catch(error =>{
         console.log(error)
       })
-    })
+      axios.get('localhost:8000/api/groups/', {
+        
+      }).then((response) => {
+        groups.value = response.data.data
+        console.log(response)
+        })
+      }).catch(error => {
+        console.log(error)
+      })
 
     function update(){
       let nama = friend.nama
@@ -81,7 +99,7 @@ export default {
       let alamat = friend.alamat
       let kode_group = friend.kode_group
 
-      axios.put(`http://pia.labirin.co.id/api/friends/${route.params.id}`, {
+      axios.put(`localhost:8000/api/friends/${route.params.id}`, {
         nama: nama,
         no_tlp: no_tlp,
         alamat: alamat,
@@ -100,7 +118,8 @@ export default {
       validation,
       router,
       update,
-      route
+      route,
+      groups
     }
 
   },
